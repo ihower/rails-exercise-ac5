@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :events
+
   resources :people
   get "welcome/say_hello" => "welcome#say"
 
