@@ -5,6 +5,9 @@ class EventsController < ApplicationController
   # GET /events/index
   # GET /events
   def index
+
+    @event = Event.new
+
     @events = Event.page( params[:page] ).per(10)
 
     respond_to do |format|
@@ -33,11 +36,6 @@ class EventsController < ApplicationController
         render :json => { id: @event.id, name: @event.name, created_time: @event.created_at }.to_json
       }
     end
-  end
-
-  # GET /events/new
-  def new
-    @event = Event.new
   end
 
   # POST /events

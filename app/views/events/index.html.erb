@@ -1,5 +1,15 @@
 <h1>Events list</h1>
 
+<%= form_for @event, :url => events_path do |f| %>
+
+    <%= render :partial => "form", :locals => { :f => f } %>
+
+    <%= f.submit "Create", :class => "btn btn-primary" %>
+
+<% end %>
+
+<hr>
+
 <table class="table">
 <% @events.each do |e| %>
 
@@ -22,8 +32,6 @@
 
 <% end %>
 </table>
-
-<%= link_to 'New Event', new_event_path %>
 
 <%= paginate @events %>
 
