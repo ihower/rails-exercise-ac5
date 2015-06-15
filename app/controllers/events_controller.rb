@@ -10,6 +10,7 @@ class EventsController < ApplicationController
       @event = Event.find( params[:eid] )
     else
       @event = Event.new
+      @event.start_on = Date.new(2015,1,1) # assign a default date
     end
 
     prepare_variable_for_index_template

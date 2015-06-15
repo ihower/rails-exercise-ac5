@@ -12,6 +12,16 @@
   <%= f.text_field :name, :required => true, :class => "form-control" %>
 </div>
 
+<div class="form-group">
+  <%= f.label :start_on, "開始日期" %>
+  <%= f.date_select :start_on, :required => true, :class => "form-control" %>
+</div>
+
+<div class="form-group">
+  <%= f.label :schedule_at, "預約時間" %>
+  <%= f.datetime_select :schedule_at, :required => true, :class => "form-control" %>
+</div>
+
  <div class="form-group">
   <%= f.label :description, "Description" %>
   <%= f.text_area :description, :class => "form-control" %>
