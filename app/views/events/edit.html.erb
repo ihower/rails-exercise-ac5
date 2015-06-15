@@ -1,6 +1,0 @@
-<%= form_for @event, :url => event_path(@event), :method => :patch, :class => "form" do |f| %>
-
-    <%= render :partial => "form", :locals => { :f => f } %>
-
-    <%= f.submit "Update", :class => "btn btn-primary" %>
-<% end %>

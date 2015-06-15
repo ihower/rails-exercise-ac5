@@ -1,11 +1,12 @@
 <h1>Events list</h1>
 
-<%= form_for @event, :url => events_path do |f| %>
+<%= form_for @event do |f| %>
 
     <%= render :partial => "form", :locals => { :f => f } %>
 
-    <%= f.submit "Create", :class => "btn btn-primary" %>
+    <%= f.submit "Save", :class => "btn btn-primary" %>
 
+    <%= link_to "Cancel", events_path, :class => "btn btn-default" %>
 <% end %>
 
 <hr>
@@ -24,7 +25,7 @@
     <%= link_to "Get XML", event_path(e, :format => :xml), :class => "btn btn-default" %>
     <%= link_to "Get JSON", event_path(e, :format => :json), :class => "btn btn-default" %>
 
-    <%= link_to "Edit", edit_event_path(e), :class => "btn btn-default" %>
+    <%= link_to "Edit", events_path( :eid => e ), :class => "btn btn-default" %>
 
     <%= link_to "Delete", event_path(e), :method => :delete, :class => "btn btn-danger" %>
     </td>

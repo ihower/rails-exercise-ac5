@@ -6,9 +6,13 @@ class EventsController < ApplicationController
   # GET /events
   def index
 
-    @event = Event.new
+    if params[:eid]
+      @event = Event.find( params[:eid] )
+    else
+      @event = Event.new
+    end
 
-    @events = Event.page( params[:page] ).per(10)
+    prepare_variable_for_index_template
 
     respond_to do |format|
       format.html # index.html.erb
@@ -48,12 +52,11 @@ class EventsController < ApplicationController
 
       redirect_to events_path # 告訴瀏覽器 HTTP code: 303
     else
-      render :action => :new # new.html.erb
-    end
-  end
 
-  # GET /events/:id/edit
-  def edit
+      prepare_variable_for_index_template
+
+      render :action => :index
+    end
   end
 
   # PATCH /events/:id
@@ -62,9 +65,11 @@ class EventsController < ApplicationController
 
       flash[:notice] = "編輯成功"
 
-      redirect_to event_path(@event)
+      redirect_to events_path
     else
-      render :action => :edit # edit.html.erb
+      prepare_variable_for_index_template
+
+      render :action => :index
     end
   end
 
@@ -85,6 +90,10 @@ class EventsController < ApplicationController
 
   def event_params
     params.require(:event).permit(:name, :description)
+  end
+
+  def prepare_variable_for_index_template
+    @events = Event.page( params[:page] ).per(10)
   end
 
 end
