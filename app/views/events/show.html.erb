@@ -1,6 +1,12 @@
 
 <h2><%= @event.name %></h2>
 
+<ul>
+<% @event.groups.each do |g| %>
+  <li><%= g.name %></li>
+<% end %>
+</ul>
+
 <p><%= @event.category_name %></p>
 
 <%= simple_format @event.description %>
