@@ -1,0 +1,19 @@
+<h2><%= @event.name %>: Attendee List</h2>
+
+<ul>
+<% @attendees.each do |a| %>
+  <li>
+    <%= a.name %>
+
+    <%= link_to "Show", event_attendee_path(@event, a), :class => "btn btn-primary" %>
+
+    <%= link_to "Edit", edit_event_attendee_path(@event, a), :class => "btn btn-primary" %>
+
+    <%= link_to "Delete", event_attendee_path(@event, a), :method => :delete, :data => { :confirm => "Are you sure?"}, :class => "btn btn-danger" %>
+
+  </li>
+
+<% end %>
+</ul>
+
+<%= link_to "New attendee", new_event_attendee_path(@event), :class => "btn btn-primary" %>
