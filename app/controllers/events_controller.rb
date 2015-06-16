@@ -30,6 +30,11 @@ class EventsController < ApplicationController
 
   end
 
+  # GET /events/latest
+  def latest
+    @events = Event.order("id DESC").limit(3)
+  end
+
   # GET /events/:id
   def show
     @page_title = @event.name

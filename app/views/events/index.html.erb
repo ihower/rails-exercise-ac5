@@ -1,5 +1,9 @@
 <h1>Events list</h1>
 
+<p>
+    <%= link_to "Latest events", latest_events_path %>
+</p>
+
 <%= form_for @event do |f| %>
 
     <%= render :partial => "form", :locals => { :f => f } %>

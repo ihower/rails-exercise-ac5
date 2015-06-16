@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20150615143844) do
     t.string   "foobar"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.string   "state"
+    t.string   "status"
     t.date     "start_on"
     t.datetime "schedule_at"
     t.integer  "category_id"
