@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
     collection do
       get :latest
+    member do
+      get :dashboard
     end
   end
 

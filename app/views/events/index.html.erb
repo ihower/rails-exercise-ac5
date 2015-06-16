@@ -26,6 +26,8 @@
     <td>
     <%= link_to "Show", event_path(e), :class => "btn btn-primary" %>
 
+    <%= link_to "Dashboard", dashboard_event_path(e), :class => "btn btn-primary" %>
+
     <%= link_to "Attendee List", event_attendees_path(e), :class => "btn btn-primary" %>
 
     <%= link_to "Get XML", event_path(e, :format => :xml), :class => "btn btn-default" %>
