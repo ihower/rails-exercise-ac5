@@ -15,11 +15,13 @@
 
 <hr>
 
+<%= form_tag bulk_update_events_path do %>
 <table class="table">
 <% @events.each do |e| %>
-
   <tr>
     <td>
+
+    <%= check_box_tag "ids[]", e.id, false %>
     <%= e.name %>
     </td>
 
@@ -41,6 +43,11 @@
 
 <% end %>
 </table>
+
+    <%= submit_tag "Delete" %>
+    <%= submit_tag "Publish" %>
+
+<% end %>
 
 <%= paginate @events %>
 
