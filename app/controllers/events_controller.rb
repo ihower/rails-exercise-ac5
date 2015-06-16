@@ -119,7 +119,19 @@ class EventsController < ApplicationController
   end
 
   def prepare_variable_for_index_template
-    @events = Event.page( params[:page] ).per(10)
+
+    if params[:keyword]
+      @events = Event.where( [ "name like ?", "%#{params[:keyword]}%" ] )
+    else
+      @events = Event.all
+    end
+
+    if params[:order]
+      sort_by = (params[:order] == 'name') ? 'name' : 'id'
+      @events = @events.order(sort_by)
+    end
+
+    @events = @events.page( params[:page] ).per(10)
   end
 
 end
