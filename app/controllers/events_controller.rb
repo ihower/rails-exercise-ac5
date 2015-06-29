@@ -76,6 +76,10 @@ class EventsController < ApplicationController
 
   # PATCH /events/:id
   def update
+    if params[:_remove_logo] == "1"
+      @event.logo = nil
+    end
+
     if @event.update( event_params )
 
       flash[:notice] = "編輯成功"
@@ -118,7 +122,7 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:name, :description, :category_id, :status,
+    params.require(:event).permit(:name, :logo, :description, :category_id, :status,
                                   :group_ids => [] )
   end
 
@@ -127,7 +131,7 @@ class EventsController < ApplicationController
     if params[:keyword]
       @events = Event.where( [ "name like ?", "%#{params[:keyword]}%" ] )
     else
-      @events = Event.all
+      @events = Event.order("id DESC")
     end
 
     if params[:order]

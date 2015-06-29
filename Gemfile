@@ -17,6 +17,8 @@ gem 'bootstrap-sass', '~> 3.3.4'
 
 gem 'kaminari'
 
+gem "paperclip"
+
 gem 'devise'
 
 # Use jquery as the JavaScript library
