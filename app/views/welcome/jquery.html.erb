@@ -1,0 +1,62 @@
+<h1>Play jQuery</h1>
+
+<input id="input-text" type="text">
+<input id="input-submit" type="submit">
+
+<ul id="foo">
+  <li>AAA
+    <a href="#" class="remove">Remove</a>
+    <a href="#" class="update-author">Update author</a>
+    <span class="author">111</span>
+  </li>
+  <li>BBB <a href="#" class="remove">Remove</a></li>
+  <li>CCC <a href="#" class="remove">Remove</a></li>
+
+</ul>
+
+<a href="#" id="insert-data">Insert Data</a>
+<a href="#" id="toggle-list">Toggle List</a>
+<a href="https://ihower.tw" id="get-link">ihower</a>
+
+<script>
+
+  $("#input-submit").click(function(){
+    var it = $("#input-text")
+    var str = it.val();
+    $("#foo").prepend("<li>" + str + "</li>")
+    it.val("");
+  })
+
+  $("#get-link").click(function(event){
+    event.preventDefault()
+    console.log( $(this).attr("href") );
+  })
+
+  $("#foo .update-author").click(function(){
+    var update = $(this);
+    var li = update.closest("li");
+    var author = li.find(".author");
+    author.html("Q___Q");
+  })
+
+  // $("#foo .remove").click(function(event){
+  $("#foo").on("click", ".remove", function(event){
+
+    event.preventDefault()
+    var remove = $(this);
+    var li = remove.closest("li");
+    li.remove();
+  })
+
+  // $("#insert-data").click(function(){
+  $("#insert-data").on("click", function(){
+    $("#foo").append('<li>DDDD <a href="#" class="remove">Remove</a></li>')
+  })
+
+  $("#toggle-list").click(function(){
+    $("#foo").slideToggle();
+  })
+
+</script>
+
+

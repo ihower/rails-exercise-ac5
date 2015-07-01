@@ -21,8 +21,10 @@ Rails.application.routes.draw do
   end
 
   resources :people
-  get "welcome/say_hello" => "welcome#say"
 
+  get "/jquery" => "welcome#jquery"
+
+  get "welcome/say_hello" => "welcome#say"
   get "welcome" => "welcome#index"
 
   # The priority is based upon order of creation: first created -> highest priority.
