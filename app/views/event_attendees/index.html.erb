@@ -2,14 +2,14 @@
 
 <ul>
 <% @attendees.each do |a| %>
-  <li>
+  <li id="attendee-<%= a.id %>">
     <%= a.name %>
 
     <%= link_to "Show", event_attendee_path(@event, a), :class => "btn btn-primary" %>
 
     <%= link_to "Edit", edit_event_attendee_path(@event, a), :class => "btn btn-primary" %>
 
-    <%= link_to "Delete", event_attendee_path(@event, a), :method => :delete, :data => { :confirm => "Are you sure?"}, :class => "btn btn-danger" %>
+    <%= link_to "Delete", event_attendee_path(@event, a), :method => :delete, :remote => true, :data => { :confirm => "Are you sure?"}, :class => "btn btn-danger" %>
 
   </li>
 
