@@ -1,0 +1,81 @@
+<div id="ajax-progress" class="progress">
+  <div class="progress-bar progress-bar-striped active" style="width: 100%">
+    <span class="sr-only">Complete</span>
+  </div>
+</div>
+
+<h1>Ajax demo</h1>
+
+<%= link_to "Ajax HTML", ajaxtest_path, :id => "ajaxhtml" %>
+
+<%= link_to "Ajax Script", ajaxtest_path, :remote => true, :id => "ajaxscript" %>
+
+<%= link_to "Ajax JSON", ajaxtest_path, :id => "ajaxjson" %>
+
+<div id="content">
+</div>
+
+<div id="info">
+</div>
+
+<script id="main-template" type="text/template">
+    <h1>{{title}}</h1>
+    <h2>{{content}}</h2>
+</script>
+
+<script>
+  $("#ajax-progress").hide();
+
+  $("#ajaxjson").click(function(e){
+    e.preventDefault();
+
+    var template = $('#main-template').html();
+
+    var url = $(this).attr("href");
+    $.ajax(url, {
+      dataType: "json",
+      success: function(data) {
+        console.log(data);
+
+         var html = template.replace("{{title}}", data["foo"] );
+        html = html.replace("{{content}}", data["t"]);
+
+        $("#content").html( html );
+
+      }
+    })
+  })
+  //$("#ajaxscript").click(function(e){
+  //  e.preventDefault();
+  //  var url = $(this).attr("href");
+//
+  //  $.ajax(url, {
+  //    dataType: "script"
+  //  })
+  //})
+
+  $("#ajaxhtml").click(function(e){
+    e.preventDefault();
+
+    var url = $(this).attr("href");
+
+    $.ajax(url, {
+      success: function(response) {
+        // $("#content").append(response)
+        $("#content").html(response)
+      },
+      error: function(response) {
+        alert("Errrr")
+      },
+      beforeSend: function(){
+        $("#ajax-progress").show();
+      },
+      complete: function(){
+        $("#ajax-progress").hide();
+      }
+    })
+
+  })
+
+
+</script>

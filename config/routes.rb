@@ -24,6 +24,9 @@ Rails.application.routes.draw do
 
   get "/jquery" => "welcome#jquery"
 
+  get "/ajax" => "welcome#ajax"
+  get "/ajaxtest" => "welcome#ajaxtest"
+
   get "welcome/say_hello" => "welcome#say"
   get "welcome" => "welcome#index"
 
