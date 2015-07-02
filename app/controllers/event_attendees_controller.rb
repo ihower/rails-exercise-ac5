@@ -19,9 +19,20 @@ class EventAttendeesController < ApplicationController
     @attendee = @event.attendees.build( attendee_params )
 
     if @attendee.save
-      redirect_to event_attendees_path(@event)
+      respond_to do |format|
+        format.html {
+          flash[:notice] = "Done!"
+          redirect_to :back #event_attendees_path(@event)
+        }
+        format.js
+      end
     else
-      render :action => "new"
+      respond_to do |format|
+        format.html {
+          render :action => "new"
+        }
+        format.js
+      end
     end
   end
 

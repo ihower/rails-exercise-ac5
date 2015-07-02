@@ -21,4 +21,16 @@
 
 <%= simple_format @event.description %>
 
+<h2>Attendee List</h2>
+<%= form_for [@event, Attendee.new], :remote => true do |f| %>
+  <%= f.text_field :name, :required => true %>
+  <%= f.submit %>
+<% end %>
+
+<ul id="attendees-list">
+<% @event.attendees.each do |a| %>
+  <%= render :partial => "event_attendees/item", :locals => { :attendee => a } %>
+<% end %>
+</ul>
+
 <p><%= link_to 'Back to index', events_path %></p>

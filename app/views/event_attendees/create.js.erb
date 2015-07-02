@@ -1,0 +1,11 @@
+<% if @attendee.errors.any? %>
+
+  alert("your browser sucks!")
+
+<% else %>
+
+  $("form").trigger("reset");
+  <% html = j( render :partial => "event_attendees/item", :locals => { :attendee => @attendee } ) %>
+  $("#attendees-list").prepend("<%= html %>")
+
+<% end %>
