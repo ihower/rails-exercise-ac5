@@ -4,13 +4,14 @@
 <input id="input-submit" type="submit">
 
 <ul id="foo">
-  <li>AAA
+
+  <li data-color="red">AAA
     <a href="#" class="remove">Remove</a>
     <a href="#" class="update-author">Update author</a>
     <span class="author">111</span>
   </li>
-  <li>BBB <a href="#" class="remove">Remove</a></li>
-  <li>CCC <a href="#" class="remove">Remove</a></li>
+  <li data-color="blue">BBB <a href="#" class="remove">Remove</a></li>
+  <li data-color="green">CCC <a href="#" class="remove">Remove</a></li>
 
 </ul>
 
@@ -19,6 +20,11 @@
 <a href="https://ihower.tw" id="get-link">ihower</a>
 
 <script>
+
+  $("li").mouseover(function(){
+    var color = $(this).data("color");
+    $(this).css( { background: color } )
+  })
 
   $("#input-submit").click(function(){
     var it = $("#input-text")
