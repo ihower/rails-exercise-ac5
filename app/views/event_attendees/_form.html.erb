@@ -1,0 +1,6 @@
+<%= form_for [@event, attendee], :remote => true do |f| %>
+
+  <%= f.text_field :name %>
+  <%= f.submit %>
+
+<% end %>

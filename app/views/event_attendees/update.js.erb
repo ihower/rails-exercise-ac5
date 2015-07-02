@@ -1,0 +1,3 @@
+
+<% html = j( render :partial => "event_attendees/item", :locals => { :attendee => @attendee } ) %>
+$("#attendee-<%= @attendee.id %>").html("<%= html %>")

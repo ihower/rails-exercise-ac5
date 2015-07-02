@@ -1,4 +1,10 @@
 <li id="attendee-<%= attendee.id %>">
-  <%= attendee.name %>
+
+  <span id="attendee-name-<%= attendee.id %>">
+    <%= attendee.name %>
+  </span>
+
+  <%= link_to "Edit", edit_event_attendee_path(@event, attendee), :remote => true %>
+
   <%= link_to "Remove", event_attendee_path(@event, attendee), :method => :delete, :remote => true %>
 </li>

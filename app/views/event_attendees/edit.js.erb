@@ -1,0 +1,6 @@
+var attendee_name = $("#attendee-name-<%= @attendee.id %>");
+
+<% html = j( render :partial => "form", :locals => { :attendee => @attendee } ) %>
+
+attendee_name.html("<%= html %>")
+

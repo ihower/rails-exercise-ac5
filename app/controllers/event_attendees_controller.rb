@@ -31,20 +31,30 @@ class EventAttendeesController < ApplicationController
         format.html {
           render :action => "new"
         }
-        format.js
+        format.js # create.js.erb
       end
     end
   end
 
   def edit
     @attendee = @event.attendees.find( params[:id] )
+
+    respond_to do |format|
+      format.html
+      format.js # edit.html.erb
+    end
   end
 
   def update
     @attendee = @event.attendees.find( params[:id] )
 
     if @attendee.update( attendee_params )
-      redirect_to event_attendees_path(@event)
+      respond_to do |format|
+        format.html {
+          redirect_to event_attendees_path(@event)
+        }
+        format.js # update.js.erb
+      end
     else
       render :action => "edit"
     end
