@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150703021730) do
+ActiveRecord::Schema.define(version: 20150703030939) do
 
   create_table "attendees", force: :cascade do |t|
     t.string   "name"
@@ -100,6 +100,16 @@ ActiveRecord::Schema.define(version: 20150703021730) do
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name"
+
+  create_table "ubikes", force: :cascade do |t|
+    t.string   "iid"
+    t.string   "name"
+    t.text     "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "ubikes", ["iid"], name: "index_ubikes_on_iid"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
