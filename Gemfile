@@ -25,6 +25,7 @@ gem 'omniauth-facebook'
 gem 'faraday'
 
 gem 'bootstrap-datepicker-rails'
+gem "select2-rails"
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
