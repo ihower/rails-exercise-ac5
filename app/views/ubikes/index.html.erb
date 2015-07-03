@@ -1,0 +1,11 @@
+<table class="table">
+<% @ubikes.each do |u| %>
+  <tr>
+    <% ["_id", "iid", "sv", "sd", "vtyp", "sno", "sna", "sip", "tot", "sbi", "sarea", "mday", "lat", "lng", "ar", "sareaen", "snaen", "aren", "nbcnt", "bemp", "act"].each do |k| %>
+
+      <td><%= u[k] %></td>
+
+    <% end %>
+  </tr>
+<% end %>
+</table>
