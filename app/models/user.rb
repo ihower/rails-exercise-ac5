@@ -7,6 +7,13 @@ class User < ActiveRecord::Base
 
   has_many :events
 
+  def get_fb_data
+    conn = Faraday.new(:url => 'https://graph.facebook.com')
+    res = conn.get '/v2.3/me', { :access_token => self.fb_token }
+
+    JSON.parse( res.body )
+  end
+
   def self.from_omniauth(auth)
     # Case 1: Find existing user by facebook uid
     user = User.find_by_fb_uid( auth.uid )
