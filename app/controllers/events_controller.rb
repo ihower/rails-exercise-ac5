@@ -135,6 +135,8 @@ class EventsController < ApplicationController
 
   def prepare_variable_for_index_template
 
+    gon.tags = Tag.all.map{ |x| x.name }
+
     if params[:keyword]
       @events = Event.where( [ "name like ?", "%#{params[:keyword]}%" ] )
     else

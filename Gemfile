@@ -26,6 +26,7 @@ gem 'faraday'
 
 gem 'bootstrap-datepicker-rails'
 gem "select2-rails"
+gem 'gon'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
