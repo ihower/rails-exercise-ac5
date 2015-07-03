@@ -39,11 +39,18 @@ class EventsController < ApplicationController
 
   # GET /events/:id
   def show
-    @page_title = @event.name
+    @attendees = @event.attendees.page(params[:page]).per(10)
+
+    if @attendees.last_page?
+      @next_page = nil
+    else
+      @next_page = @attendees.next_page
+    end
 
     respond_to do |format|
       format.html { @page_title = @event.name } # show.html.erb
       format.xml # show.xml.builder
+      format.js
       format.json {
         render :json => { id: @event.id, name: @event.name, created_time: @event.created_at }.to_json
       }

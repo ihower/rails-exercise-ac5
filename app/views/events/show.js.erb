@@ -1,0 +1,9 @@
+var html = "<%= j( render :partial => "list" ) %>";
+
+$("#attendees-list").append(html);
+
+<% if @next_page %>
+  $("#load-more").attr("href", "<%= event_path(@event, :page => @next_page) %>")
+<% else %>
+  $("#load-more").remove();
+<% end %>

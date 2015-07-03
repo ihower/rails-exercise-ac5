@@ -28,9 +28,14 @@
 <% end %>
 
 <ul id="attendees-list">
-<% @event.attendees.each do |a| %>
+<% @attendees.each do |a| %>
   <%= render :partial => "event_attendees/item", :locals => { :attendee => a } %>
 <% end %>
 </ul>
 
+<% if @next_page %>
+  <%= link_to "Load More", event_path(@event, :page => @next_page ), :remote => true, :class => "btn btn-primary", :id => "load-more" %>
+<% end %>
+
 <p><%= link_to 'Back to index', events_path %></p>
+
