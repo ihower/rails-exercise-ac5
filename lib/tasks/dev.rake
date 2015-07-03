@@ -5,7 +5,7 @@ namespace :dev do
     res = conn.get '/opendata/datalist/apiAccess?scope=resourceAquire&rid=ddb80380-f1b3-4f8e-8016-7ed9cba571d5'
     data = JSON.parse( res.body )
 
-
+    # Create or Update
     data["result"]["results"].each do |u|
       ubike = Ubike.find_by_iid( u["iid"] )
       if ubike
@@ -17,7 +17,15 @@ namespace :dev do
         ubike = Ubike.create!( :name => u["sna"], :iid => u["iid"], :data => u )
         puts "Create ubike: #{ubike.id}"
       end
+    end
 
+    # Delete
+    source_ids = data["result"]["results"].map{ |x| x["iid"] }
+    our_ids = Ubike.all.map{ |x| x.iid }
+    deleting_ids = our_ids - source_ids
+    deleting_ids.each do |i|
+      puts "Delete ubike iid: #{i}"
+      Ubike.find(i).destroy
     end
 
   end
