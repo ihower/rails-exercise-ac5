@@ -1,5 +1,13 @@
 namespace :dev do
 
+  task :parse_104 => :environment do
+    conn = Faraday.new(:url => 'http://www.104.com.tw' )
+    res = conn.get '/job/?jobno=3azzu&jobsource=104_bank1&hotjob_chr='
+    doc = Nokogiri::HTML(res.body)
+
+    puts doc.css(".company a")[0].content
+  end
+
   task :get_ubike => :environment do
     conn = Faraday.new(:url => 'http://data.taipei' )
     res = conn.get '/opendata/datalist/apiAccess?scope=resourceAquire&rid=ddb80380-f1b3-4f8e-8016-7ed9cba571d5'
