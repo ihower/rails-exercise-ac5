@@ -130,7 +130,7 @@ class EventsController < ApplicationController
 
   def event_params
     params.require(:event).permit(:name, :logo, :description, :category_id, :status,
-                                  :tag_list, :group_ids => [] )
+                                  :start_on, :tag_list, :group_ids => [] )
   end
 
   def prepare_variable_for_index_template
