@@ -72,6 +72,11 @@
 
   $("#event_group_ids").select2();
 
+  $("#event_tag_list").select2({
+    tags: <%= raw( Tag.all.map{ |x| x.name }.to_json ) %>,
+    tokenSeparators: [',', ' ']
+  });
+
   $("#event_start_on").datepicker({
     format: "yyyy/mm/dd"
   });
