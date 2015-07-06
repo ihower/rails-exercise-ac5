@@ -4,6 +4,11 @@ class EventsController < ApplicationController
 
   before_action :set_event, :only => [:move, :toggle, :show, :dashboard, :edit, :update, :destroy]
 
+  def spa
+    @events = Event.all
+    gon.events = @events
+  end
+
   # GET /events/index
   # GET /events
   def index
@@ -81,9 +86,15 @@ class EventsController < ApplicationController
 
     if @event.save
 
-      flash[:notice] = "新增成功"
-
-      redirect_to events_path # 告訴瀏覽器 HTTP code: 303
+      respond_to do |format|
+        format.html {
+          flash[:notice] = "新增成功"
+          redirect_to events_path # 告訴瀏覽器 HTTP code: 303
+        }
+        format.json {
+          render :json => @event
+        }
+      end
     else
 
       prepare_variable_for_index_template
@@ -99,14 +110,26 @@ class EventsController < ApplicationController
     end
 
     if @event.update( event_params )
-
-      flash[:notice] = "編輯成功"
-
-      redirect_to events_path
+      respond_to do |format|
+        format.html {
+          flash[:notice] = "編輯成功"
+          redirect_to events_path
+        }
+        format.json {
+          render :json => @event
+        }
+      end
     else
-      prepare_variable_for_index_template
-
-      render :action => :index
+      respond_to do |format|
+        format.html {
+          prepare_variable_for_index_template
+          render :action => :index
+        }
+        format.json {
+          Rails.logger.debug( @event.errors.full_messages.inspect )
+          render :json => { :message => "Error" }
+        }
+      end
     end
   end
 
@@ -114,9 +137,14 @@ class EventsController < ApplicationController
   def destroy
     @event.destroy
 
-    flash[:alert] = "刪除成功"
+    respond_to do |format|
+      format.html {
+        flash[:alert] = "刪除成功"
+        redirect_to events_path
+      }
+      format.json { render :nothing => true }
+    end
 
-    redirect_to events_path
   end
 
   # POST /events/bulk_update

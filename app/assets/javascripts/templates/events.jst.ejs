@@ -1,0 +1,13 @@
+<ul>
+<% events.forEach( function(event){ %>
+
+  <%= JST["templates/event"]( { event: event } ) %>
+
+<% }) %>
+</ul>
+
+<p>
+New Event:
+<input type="text" id="new-event-input">
+<input type="submit" id="new-event-submit">
+</p>

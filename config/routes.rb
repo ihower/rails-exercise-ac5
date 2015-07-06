@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :attendees, :controller => "event_attendees"
 
     collection do
+      get :spa
       get :latest
       post :bulk_update
     end

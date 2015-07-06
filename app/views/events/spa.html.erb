@@ -1,0 +1,73 @@
+<div id="content">
+</div>
+
+<script>
+
+$("#content").html( JST["templates/events"]({ events: gon.events }) )
+
+$("ul").on("click", ".remove", function(e){
+  e.preventDefault();
+  var li = $(this).parent();
+  var event_id = li.data("event-id");
+
+  li.remove();
+
+  $.ajax({
+    url: "/events/" + event_id,
+    type: "DELETE",
+    dataType: "json"
+  })
+})
+
+$("ul").on("click", ".edit", function(e){
+  var edit = $(this);
+  var data = {
+    event: {
+      name: edit.text().trim()
+    }
+  }
+  var form = JST["templates/event_edit"](data);
+  edit.replaceWith(form);
+})
+
+$("#new-event-submit").click(function(){
+  var input = $("#new-event-input");
+  var data = input.val();
+
+  $.ajax({
+    url: "/events",
+    type: "POST",
+    dataType: "json",
+    data: {
+      "event[name]": data,
+      "event[friendly_id]": data
+    },
+    success: function(data) {
+      console.log("CREATE OK");
+      input.val("");
+      $("ul").append( JST["templates/event"]({ event: data }) );
+    }
+  })
+})
+
+$("ul").on("click", ".edit-event-submit", function(e){
+  var input = $(this).parent().find("input");
+  var data = input.val();
+  var li = input.parent();
+  var event_id = li.data("event-id");
+
+  $.ajax({
+    url: "/events/" + event_id,
+    type: "PATCH",
+    dataType: "json",
+    data: {
+      "event[name]": data
+    },
+    success: function(data) {
+      console.log("UPDATE OK");
+      li.replaceWith( JST["templates/event"]({ event: data }) )
+    }
+  })
+})
+
+</script>
