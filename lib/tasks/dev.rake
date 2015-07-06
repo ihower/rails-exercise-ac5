@@ -1,5 +1,12 @@
 namespace :dev do
 
+  task :fix_events_friendly_id => :environment do
+    Event.all.each do |e|
+      e.friendly_id = SecureRandom.hex(10)
+      e.save!
+    end
+  end
+
   task :parse_104 => :environment do
     conn = Faraday.new(:url => 'http://www.104.com.tw' )
     res = conn.get '/job/?jobno=3azzu&jobsource=104_bank1&hotjob_chr='

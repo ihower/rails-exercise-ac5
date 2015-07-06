@@ -80,7 +80,7 @@ class EventAttendeesController < ApplicationController
   end
 
   def set_event
-    @event = Event.find( params[:event_id] )
+    @event = Event.find_by_friendly_id( params[:event_id] )
   end
 
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150703030939) do
+ActiveRecord::Schema.define(version: 20150706020636) do
 
   create_table "attendees", force: :cascade do |t|
     t.string   "name"
@@ -55,9 +55,11 @@ ActiveRecord::Schema.define(version: 20150703030939) do
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
+    t.string   "friendly_id"
   end
 
   add_index "events", ["category_id"], name: "index_events_on_category_id"
+  add_index "events", ["friendly_id"], name: "index_events_on_friendly_id", unique: true
   add_index "events", ["user_id"], name: "index_events_on_user_id"
 
   create_table "groups", force: :cascade do |t|

@@ -67,6 +67,7 @@ class EventsController < ApplicationController
     @event = Event.new( event_params )
 
     @event.user = current_user
+    @event.friendly_id = SecureRandom.hex(10)
 
     if @event.save
 
@@ -125,7 +126,7 @@ class EventsController < ApplicationController
   private
 
   def set_event
-    @event = Event.find( params[:id] )
+    @event = Event.find_by_friendly_id( params[:id] )
   end
 
   def event_params
