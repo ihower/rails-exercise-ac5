@@ -9,9 +9,12 @@ class EventsController < ApplicationController
   def index
 
     if params[:eid]
-      @event = Event.find( params[:eid] )
+      @event = Event.find_by_friendly_id( params[:eid] )
     else
       @event = Event.new
+
+      @event.friendly_id = SecureRandom.hex(10)
+
       @event.start_on = Date.new(2015,1,1) # assign a default date
     end
 
@@ -67,7 +70,6 @@ class EventsController < ApplicationController
     @event = Event.new( event_params )
 
     @event.user = current_user
-    @event.friendly_id = SecureRandom.hex(10)
 
     if @event.save
 
@@ -131,7 +133,7 @@ class EventsController < ApplicationController
 
   def event_params
     params.require(:event).permit(:name, :logo, :description, :category_id, :status,
-                                  :start_on, :tag_list, :group_ids => [] )
+                                  :start_on, :tag_list, :friendly_id, :group_ids => [] )
   end
 
   def prepare_variable_for_index_template
