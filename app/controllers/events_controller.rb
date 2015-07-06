@@ -7,7 +7,6 @@ class EventsController < ApplicationController
   # GET /events/index
   # GET /events
   def index
-
     if params[:eid]
       @event = Event.find_by_friendly_id( params[:eid] )
     else
@@ -43,6 +42,15 @@ class EventsController < ApplicationController
   # GET /events/:id
   def show
     @attendees = @event.attendees.page(params[:page]).per(10)
+
+    if cookies["view-event-#{@event.id}"]
+      # do nothing
+    else
+      #@event.increment!(:views_count)
+      Rails.logger.debug("Event Hit! : #{@event.id}" )
+
+      cookies["view-event-#{@event.id}"] = "yes!"
+    end
 
     if @attendees.last_page?
       @next_page = nil
