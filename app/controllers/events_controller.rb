@@ -134,12 +134,7 @@ class EventsController < ApplicationController
   end
 
   def toggle
-    if params[:is_checked] == "true"
-      @event.status = "published"
-    else
-      @event.status = "draft"
-    end
-
+    @event.is_open = !@event.is_open
     @event.save!
 
     render :json => { :status => "OK" }
