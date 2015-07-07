@@ -28,7 +28,7 @@
 
 <table class="table">
 <% @events.each do |e| %>
-  <tr>
+  <tr data-reorder-url="<%= move_event_path(e) %>">
     <td>
 
     <%= check_box_tag "ids[]", e.id, false %>
@@ -83,3 +83,27 @@
 <%= paginate @events %>
 
 <%= link_to "Atom feed", events_path(:format => :atom) %>
+
+
+<script>
+
+    $("table").sortable({
+        items: "tr",
+        update: function(event, ui) {
+
+            console.log( "Move to " + ui.item.index() );
+
+            url = ui.item.data("reorder-url")
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                dataType: "json",
+                data: {
+                    position: ui.item.index()
+                }
+            })
+        }
+    });
+
+</script>

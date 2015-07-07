@@ -16,4 +16,5 @@
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker
 //= require select2
+//= require jquery-ui/sortable
 //= require_tree .
