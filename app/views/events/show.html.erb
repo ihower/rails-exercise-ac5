@@ -1,6 +1,8 @@
 
 <h2><%= @event.name %></h2>
 
+<p id="is_open_label"><%= @event.is_open %></p>
+
 <p><%= @event.status %></p>
 
 <% if @event.logo.exists? %>
@@ -47,11 +49,21 @@
 
 $("#check_open").click(function(){
 
-  var is_checked = $(this).prop("checked");
-  var url = $(this).val();
+  var this_checkbox = $(this);
+  var is_checked = this_checkbox.prop("checked");
+  var url = this_checkbox.val();
+  var label = $("#is_open_label");
+
+  this_checkbox.prop("disabled", true);
 
   console.log( is_checked );
   console.log( url );
+
+   if ( is_checked ) {
+     label.html("OPEN");
+   } else {
+     label.html("CLOSED");
+   }
 
   $.ajax({
     type: "POST",
@@ -60,9 +72,15 @@ $("#check_open").click(function(){
     data: {
       is_checked: is_checked
     }
+  }).success(function(data){
+
+    this_checkbox.prop("disabled", false);
+
   })
 
-})
+});
+
+
 
 </script>
 

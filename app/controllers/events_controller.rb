@@ -134,10 +134,12 @@ class EventsController < ApplicationController
   end
 
   def toggle
+    sleep(2)
+
     @event.is_open = !@event.is_open
     @event.save!
 
-    render :json => { :status => "OK" }
+    render :json => { :status => "OK", :is_open => @event.is_open }
   end
 
   private
