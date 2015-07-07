@@ -19,6 +19,9 @@
 
 <p><%= @event.category_name %></p>
 
+<%= check_box_tag "check_open", toggle_event_path(@event),
+                  (@event.status == "published") %> Open?
+
 <%= simple_format @event.description %>
 
 <h2>Attendee List</h2>
@@ -38,4 +41,28 @@
 <% end %>
 
 <p><%= link_to 'Back to index', events_path %></p>
+
+
+<script>
+
+$("#check_open").click(function(){
+
+  var is_checked = $(this).prop("checked");
+  var url = $(this).val();
+
+  console.log( is_checked );
+  console.log( url );
+
+  $.ajax({
+    type: "POST",
+    url: url,
+    dataType: "json",
+    data: {
+      is_checked: is_checked
+    }
+  })
+
+})
+
+</script>
 

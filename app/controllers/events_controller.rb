@@ -2,7 +2,7 @@ class EventsController < ApplicationController
 
   before_action :authenticate_user!, :except => [:index]
 
-  before_action :set_event, :only => [:show, :dashboard, :edit, :update, :destroy]
+  before_action :set_event, :only => [:toggle, :show, :dashboard, :edit, :update, :destroy]
 
   # GET /events/index
   # GET /events
@@ -131,6 +131,18 @@ class EventsController < ApplicationController
     end
 
     redirect_to :back
+  end
+
+  def toggle
+    if params[:is_checked] == "true"
+      @event.status = "published"
+    else
+      @event.status = "draft"
+    end
+
+    @event.save!
+
+    render :json => { :status => "OK" }
   end
 
   private

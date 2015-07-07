@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     end
 
     member do
+      post :toggle
       get :dashboard
     end
   end
