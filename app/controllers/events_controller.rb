@@ -2,7 +2,7 @@ class EventsController < ApplicationController
 
   before_action :authenticate_user!, :except => [:index]
 
-  before_action :set_event, :only => [:toggle, :show, :dashboard, :edit, :update, :destroy]
+  before_action :set_event, :only => [:move, :toggle, :show, :dashboard, :edit, :update, :destroy]
 
   # GET /events/index
   # GET /events
@@ -142,6 +142,13 @@ class EventsController < ApplicationController
     render :json => { :status => "OK", :is_open => @event.is_open }
   end
 
+  def move
+    @event.row_order_position = params[:position]
+    @event.save!
+
+    redirect_to :back
+  end
+
   private
 
   def set_event
@@ -160,7 +167,7 @@ class EventsController < ApplicationController
     if params[:keyword]
       @events = Event.where( [ "name like ?", "%#{params[:keyword]}%" ] )
     else
-      @events = Event.order("id DESC")
+      @events = Event.all
     end
 
     if params[:order]
@@ -168,7 +175,7 @@ class EventsController < ApplicationController
       @events = @events.order(sort_by)
     end
 
-    @events = @events.page( params[:page] ).per(10)
+    @events = @events.rank(:row_order).page( params[:page] ).per(10)
   end
 
 end

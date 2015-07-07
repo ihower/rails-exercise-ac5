@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150707021931) do
+ActiveRecord::Schema.define(version: 20150707034407) do
 
   create_table "attendees", force: :cascade do |t|
     t.string   "name"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20150707021931) do
     t.datetime "logo_updated_at"
     t.string   "friendly_id"
     t.boolean  "is_open",           default: false
+    t.integer  "row_order"
   end
 
   add_index "events", ["category_id"], name: "index_events_on_category_id"

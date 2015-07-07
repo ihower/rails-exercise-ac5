@@ -40,6 +40,23 @@
     </td>
 
     <td>
+
+    <%= link_to move_event_path(e, :position => :up), :method => :post do %>
+        <span class="glyphicon glyphicon-arrow-up"></span>
+    <% end %>
+
+    <%= link_to move_event_path(e, :position => :down), :method => :post do %>
+        <span class="glyphicon glyphicon-arrow-down"></span>
+    <% end %>
+
+    <%= link_to move_event_path(e, :position => :first), :method => :post do %>
+        <span class="glyphicon glyphicon-triangle-top"></span>
+    <% end %>
+
+    <%= link_to move_event_path(e, :position => :last), :method => :post do %>
+        <span class="glyphicon glyphicon-triangle-bottom"></span>
+    <% end %>
+
     <%= link_to "Show", event_path(e), :class => "btn btn-primary" %>
 
     <%= link_to "Dashboard", dashboard_event_path(e), :class => "btn btn-primary" %>

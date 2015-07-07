@@ -19,6 +19,8 @@ gem 'kaminari'
 
 gem "paperclip"
 
+gem 'ranked-model'
+
 gem 'devise'
 gem 'omniauth-facebook'
 
