@@ -1,5 +1,7 @@
 class Event < ActiveRecord::Base
 
+  attr_accessor :_remove_logo
+
   validates_presence_of :name, :friendly_id
 
   validates_uniqueness_of :friendly_id
@@ -25,6 +27,10 @@ class Event < ActiveRecord::Base
   include RankedModel
   ranks :row_order
 
+  before_validation :setup_defaults
+
+  before_save :check_remove_logo
+
   def to_param
     self.friendly_id
   end
@@ -41,6 +47,19 @@ class Event < ActiveRecord::Base
     end
 
     self.tag_ids = ids
+  end
+
+  protected
+
+  def check_remove_logo
+   if self._remove_logo == "1"
+      self.logo = nil
+   end
+  end
+
+  def setup_defaults
+    self.name.try(:strip!) # 把前後空白去除
+    self.friendly_id ||= SecureRandom.hex(8)
   end
 
 end

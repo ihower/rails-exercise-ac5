@@ -94,10 +94,6 @@ class EventsController < ApplicationController
 
   # PATCH /events/:id
   def update
-    if params[:_remove_logo] == "1"
-      @event.logo = nil
-    end
-
     if @event.update( event_params )
 
       flash[:notice] = "編輯成功"
@@ -157,7 +153,7 @@ class EventsController < ApplicationController
 
   def event_params
     params.require(:event).permit(:name, :logo, :description, :category_id, :status,
-                                  :start_on, :tag_list, :friendly_id, :group_ids => [] )
+                                  :_remove_logo, :start_on, :schedule_at, :tag_list, :friendly_id, :group_ids => [] )
   end
 
   def prepare_variable_for_index_template

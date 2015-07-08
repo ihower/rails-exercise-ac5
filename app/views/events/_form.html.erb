@@ -27,7 +27,7 @@
    <%= f.file_field :logo %>
 
    <% if @event.logo.exists? %>
-    <%= check_box_tag "_remove_logo", "1" %> Remove Logo
+    <%= f.check_box "_remove_logo" %> Remove Logo
    <% end %>
 </div>
 
