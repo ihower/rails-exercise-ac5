@@ -6,71 +6,77 @@
       </ul>
 <% end %>
 
-<div class="form-group">
-  <%= f.label :name, "Name" %>
-  <%= f.text_field :name, :required => true, :class => "form-control" %>
+<div class="row">
+
+  <div class="col-md-6">
+
+    <div class="form-group">
+      <%= f.label :name, "Name" %>
+      <%= f.text_field :name, :required => true, :class => "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :tag_list %>
+      <%= f.text_field :tag_list %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :status, "Status" %>
+      <%= f.select :status, [ ["Published", "published"], ["Draft", "draft"] ] %>
+    </div>
+
+    <div class="form-group">
+
+     <%#= f.collection_check_boxes(:group_ids, Group.all, :id, :name) %>
+
+     <%= f.select :group_ids, Group.all.map{ |x| [x.name, x.id] }, {}, :multiple => true %>
+
+    </div>
+
+    <div class="form-group">
+      <%= f.label :start_on, "開始日期" %>
+      <%= f.text_field :start_on, :required => true, :class => "form-control" %>
+    </div>
+
+  </div>
+
+  <div class="col-md-6">
+    <div class="form-group">
+      <%= f.label :friendly_id, "Event URL" %>
+      <%= f.text_field :friendly_id, :required => true, :class => "form-control" %>
+    </div>
+    <div class="form-group">
+       <%= f.file_field :logo %>
+
+       <% if @event.logo.exists? %>
+        <%= f.check_box "_remove_logo" %> Remove Logo
+       <% end %>
+    </div>
+    <div class="form-group">
+      <%= f.label :category_id, "Category" %>
+
+      <%= f.select :category_id, Category.all.map{ |x| [ x.name, x.id] }, :class => "form-control" %>
+
+      <%#= f.collection_select :category_id, Category.all, :id, :name, :class => "form-control", :prompt => "Please select" %>
+
+      <%# Category.all.each do |c| %>
+        <%#= f.radio_button :category_id, c.id %> <%#= c.name %>
+      <%# end %>
+
+    </div>
+
+    <div class="form-group">
+      <%= f.label :description, "Description" %>
+      <%= f.text_area :description, :class => "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :schedule_at, "預約時間" %>
+      <%= f.datetime_select :schedule_at, :required => true, :class => "form-control" %>
+    </div>
+
+  </div>
 </div>
 
-<div class="form-group">
-  <%= f.label :friendly_id, "Event URL" %>
-  <%= f.text_field :friendly_id, :required => true, :class => "form-control" %>
-</div>
-
-<div class="form-group">
-
-  <%= f.label :tag_list %>
-  <%= f.text_field :tag_list %>
-
-</div>
-
-<div class="form-group">
-   <%= f.file_field :logo %>
-
-   <% if @event.logo.exists? %>
-    <%= f.check_box "_remove_logo" %> Remove Logo
-   <% end %>
-</div>
-
-<div class="form-group">
-  <%= f.label :status, "Status" %>
-  <%= f.select :status, [ ["Published", "published"], ["Draft", "draft"] ] %>
-</div>
-
-<div class="form-group">
-  <%= f.label :category_id, "Category" %>
-
-  <%= f.select :category_id, Category.all.map{ |x| [ x.name, x.id] }, :class => "form-control" %>
-
-  <%#= f.collection_select :category_id, Category.all, :id, :name, :class => "form-control", :prompt => "Please select" %>
-
-  <%# Category.all.each do |c| %>
-    <%#= f.radio_button :category_id, c.id %> <%#= c.name %>
-  <%# end %>
-
-</div>
-
-<div class="form-group">
-
- <%#= f.collection_check_boxes(:group_ids, Group.all, :id, :name) %>
-
- <%= f.select :group_ids, Group.all.map{ |x| [x.name, x.id] }, {}, :multiple => true %>
-
-</div>
-
-<div class="form-group">
-  <%= f.label :start_on, "開始日期" %>
-  <%= f.text_field :start_on, :required => true, :class => "form-control" %>
-</div>
-
-<div class="form-group">
-  <%= f.label :schedule_at, "預約時間" %>
-  <%= f.datetime_select :schedule_at, :required => true, :class => "form-control" %>
-</div>
-
- <div class="form-group">
-  <%= f.label :description, "Description" %>
-  <%= f.text_area :description, :class => "form-control" %>
-</div>
 
 <script>
   $("#event_category_id").select2();
