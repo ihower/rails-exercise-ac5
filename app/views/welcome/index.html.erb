@@ -2,6 +2,11 @@
 <p><%= link_to 'Hello!', welcome_say_hello_path %></p>
 
 
+<%= t("hello", :name => "ihower" ) %>
+
+<%= t("events.hello") %>
+<%= t(:hello, :scope => "events" ) %>
+
 <%= image_tag("ruby-tw.png") %>
 
 <div id="demo">

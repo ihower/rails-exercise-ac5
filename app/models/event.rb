@@ -1,5 +1,9 @@
 class Event < ActiveRecord::Base
 
+  STATUS = ["published", "draft"]
+
+  validates_inclusion_of :status, :in => STATUS
+
   attr_accessor :_remove_logo
 
   validates_presence_of :name, :friendly_id

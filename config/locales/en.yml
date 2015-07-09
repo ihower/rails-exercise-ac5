@@ -21,3 +21,15 @@
 
 en:
   hello: "Hello world"
+
+
+zh-TW:
+  hello: 親愛的%{name}你好!
+  events:
+    hello: 活動好!
+    published: 公開
+    draft: 草稿
+
+
+
+

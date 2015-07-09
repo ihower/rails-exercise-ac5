@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   resources :ubikes
 
+  get "/about" => "welcome#about"
+
   resources :events do
     resources :attendees, :controller => "event_attendees"
 
