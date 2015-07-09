@@ -19,6 +19,9 @@ class EventAttendeesController < ApplicationController
     @attendee = @event.attendees.build( attendee_params )
 
     if @attendee.save
+
+      Notification.new_comment_notify(@event.user).deliver_now!
+
       respond_to do |format|
         format.html {
           flash[:notice] = "Done!"

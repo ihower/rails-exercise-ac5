@@ -17,5 +17,6 @@
 /tmp
 
 /config/facebook.yml
-
+/config/email.yml
 /public/system
+
