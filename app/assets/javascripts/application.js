@@ -17,4 +17,5 @@
 //= require bootstrap-datepicker
 //= require select2
 //= require jquery-ui/sortable
+//= require nested_form_fields
 //= require_tree .

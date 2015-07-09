@@ -9,8 +9,10 @@ class EventsController < ApplicationController
   def index
     if params[:eid]
       @event = Event.find_by_friendly_id( params[:eid] )
+      @event.attendees.build if @event.attendees.empty?
     else
       @event = Event.new
+      @event.attendees.build
 
       @event.friendly_id = SecureRandom.hex(10)
 
@@ -153,7 +155,9 @@ class EventsController < ApplicationController
 
   def event_params
     params.require(:event).permit(:name, :logo, :description, :category_id, :status,
-                                  :_remove_logo, :start_on, :schedule_at, :tag_list, :friendly_id, :group_ids => [] )
+                                  :_remove_logo, :start_on, :schedule_at, :tag_list, :friendly_id,
+                                  :group_ids => [],
+                                  :attendees_attributes => [:name, :id, :_destroy] )
   end
 
   def prepare_variable_for_index_template

@@ -31,6 +31,9 @@ class Event < ActiveRecord::Base
 
   before_save :check_remove_logo
 
+  accepts_nested_attributes_for :attendees,
+                                :allow_destroy => true,
+                                :reject_if => :all_blank
   def to_param
     self.friendly_id
   end

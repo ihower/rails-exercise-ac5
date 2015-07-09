@@ -77,6 +77,19 @@
   </div>
 </div>
 
+<%= f.nested_fields_for :attendees do |ff| %>
+
+  <p>
+    <%= ff.label "Attendee Name" %>
+    <%= ff.text_field :name %>
+    <%= ff.remove_nested_fields_link %>
+  </p>
+
+<% end %>
+
+<p><%= f.add_nested_fields_link :attendees %></p>
+
+
 
 <script>
   $("#event_category_id").select2();
