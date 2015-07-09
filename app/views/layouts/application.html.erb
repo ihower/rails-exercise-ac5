@@ -6,6 +6,7 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= include_gon %>
   <%= csrf_meta_tags %>
+  <%= yield :specific_javascript %>
 </head>
 <body>
 
@@ -25,10 +26,11 @@
         </div>
       <% end %>
 
-
+<nav>
       <% if current_user %>
-
         Hi, <%= current_user.email %>
+
+        <%= image_tag gravatar_url(current_user.email) %>
 
         <%= link_to('登出', destroy_user_session_path, :method => :delete) %> |
         <%= link_to('修改密碼', edit_registration_path(:user)) %>
@@ -38,13 +40,19 @@
         <%= link_to('登入', new_session_path(:user)) %> |
 
         <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
-
       <% end %>
 
+      <%= yield :my_nav %>
 
+</nav>
 
-
+<div class="main">
       <%= yield %>
+</div>
+
+<div class="sidebar">
+  <%= yield :sidebar %>
+</div>
 
       <% if current_user && current_user.admin? %>
         <%= link_to "admin", admin_events_path %>
