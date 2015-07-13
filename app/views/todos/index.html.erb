@@ -5,6 +5,8 @@ $("#main").html( JST["templates/todos"]( gon.data ) )
 //$("#main").html( JST["templates/todos"]( { todos: gon.data.todos } ) )
 
 $("#todo-list").on("click", ".remove", function(e){
+  e.preventDefault();
+
   var li = $(this).parent();
   var todo_id = li.data("todo-id");
 
@@ -18,5 +20,27 @@ $("#todo-list").on("click", ".remove", function(e){
     }
   })
 })
+
+$("#todo-form").on("submit", function(e){
+  e.preventDefault();
+
+  var input = $("#new-todo-input");
+
+  $.ajax({
+    url: "/todos",
+    method: "POST",
+    dataType: "json",
+    data: {
+      "title": input.val()
+    },
+    success: function(data) {
+      console.log( data );
+      input.val("");
+      var html = JST["templates/todo"](data);
+      $("#todo-list").prepend(html);
+    }
+  })
+})
+
 
 </script>

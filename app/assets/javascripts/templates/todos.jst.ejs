@@ -1,15 +1,14 @@
 <h1>Todo list</h1>
 
+<form id="todo-form">
+  <input type="text" id="new-todo-input" autofocus="autofocus" required="required" placeholder="Enter your todo...">
+  <input type="submit">
+</form>
+
 <ul id="todo-list">
 <% todos.forEach(function(todo){ %>
 
-  <li data-todo-id="<%= todo.id %>">
-
-    <%= todo.title %>
-
-    <a href="#" class="remove">(remove)</a>
-
-  </li>
+  <%= JST["templates/todo"]( { todo: todo } ) %>
 
 <%  }) %>
 </ul>
