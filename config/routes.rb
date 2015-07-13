@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :ubikes
 
+  get "/spa" => "welcome#spa"
   get "/about" => "welcome#about"
 
   resources :events do

@@ -1,5 +1,17 @@
 class WelcomeController < ApplicationController
 
+
+  def spa
+    gon.time = Time.now.to_s
+
+    respond_to do |format|
+      format.html
+      format.json {
+        render :json => { :time => Time.now }
+      }
+    end
+  end
+
   def say
   end
 

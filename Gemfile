@@ -5,6 +5,8 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.1'
 gem "rails-i18n"
 
+gem 'ejs'
+
 gem "letter_opener", :group => :development
 
 # Use SCSS for stylesheets

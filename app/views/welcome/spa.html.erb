@@ -1,0 +1,31 @@
+<div id="content">
+</div>
+
+1. gem "ejs"
+2. template filename is assets/javascript/templates/demo.jst.ejs
+
+<script>
+
+data = { name: "ihower", events: ["a", "b", "c"], time: gon.time  }
+$("#content").html( JST["templates/demo"](data) );
+
+$("body").on("click", "#reload-page", function(){
+  $.ajax({
+    url: "/spa",
+    dataType: "json",
+    success: function(result){
+      data = { name: "ihower", events: ["a", "b", "c"], time: result.time  }
+      $("#content").html( JST["templates/demo"](data) );
+    }
+  })
+
+})
+
+</script>
+
+
+
+
+
+
+
