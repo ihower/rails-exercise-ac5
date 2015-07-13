@@ -42,5 +42,39 @@ $("#todo-form").on("submit", function(e){
   })
 })
 
+$("#todo-list").on("click", ".edit", function(e){
+  var edit = $(this);
+  var data = {
+    todo: {
+      title: edit.text().trim()
+    }
+  }
+
+  var html = JST["templates/todo_edit"](data);
+  edit.replaceWith(html);
+})
+
+$("#todo-list").on("click", ".edit-todo-btn", function(e){
+  var btn = $(this);
+  var input = btn.parent().find("input");
+  var data = input.val();
+  var li = input.parent();
+  var todo_id = li.data("todo-id");
+
+  $.ajax({
+    url: "/todos/" + todo_id,
+    method: "PATCH",
+    dataType: "json",
+    data: {
+      title: data
+    },
+    success: function(data){
+      var html = JST["templates/todo"](data);
+      li.replaceWith(html);
+    }
+  })
+
+})
+
 
 </script>
