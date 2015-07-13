@@ -1,5 +1,14 @@
 namespace :dev do
 
+  task :fake_todos => :environment do
+    Todo.delete_all
+
+    20.times do |i|
+      Todo.create( :title => Faker::App.name )
+    end
+
+  end
+
   task :fix_events_friendly_id => :environment do
     Event.all.each do |e|
       e.friendly_id = SecureRandom.hex(10)

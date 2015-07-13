@@ -1,0 +1,22 @@
+
+<script>
+
+$("#main").html( JST["templates/todos"]( gon.data ) )
+//$("#main").html( JST["templates/todos"]( { todos: gon.data.todos } ) )
+
+$("#todo-list").on("click", ".remove", function(e){
+  var li = $(this).parent();
+  var todo_id = li.data("todo-id");
+
+  $.ajax({
+    url: "/todos/" + todo_id,
+    method: "DELETE",
+    dataType: "json",
+    success: function(data) {
+      console.log( data.message );
+      li.remove();
+    }
+  })
+})
+
+</script>
