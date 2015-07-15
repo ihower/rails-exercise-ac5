@@ -9,6 +9,12 @@ Rails.application.routes.draw do
   get "/spa" => "welcome#spa"
   get "/about" => "welcome#about"
 
+
+  #namespace "api/v1" do
+  scope :path => '/api/v1/', :module => "api_v1", :defaults => { :format => :json }, :as => 'v1' do
+    resources :events
+  end
+
   resources :events do
     resources :attendees, :controller => "event_attendees"
 

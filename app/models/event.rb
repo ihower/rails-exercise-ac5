@@ -66,6 +66,7 @@ class Event < ActiveRecord::Base
 
   def setup_defaults
     self.name.try(:strip!) # 把前後空白去除
+    self.status ||= "draft"
     self.friendly_id ||= SecureRandom.hex(8)
   end
 
