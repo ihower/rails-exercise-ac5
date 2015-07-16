@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
 
   has_many :events
 
+  before_create :generate_authentication_token
+
   serialize :fb_raw_data
 
   def get_fb_data
@@ -59,6 +61,10 @@ class User < ActiveRecord::Base
 
   def admin?
     self.role == "admin"
+  end
+
+  def generate_authentication_token
+    self.authentication_token = Devise.friendly_token
   end
 
 end
