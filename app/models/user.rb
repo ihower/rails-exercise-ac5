@@ -11,20 +11,26 @@ class User < ActiveRecord::Base
 
   serialize :fb_raw_data
 
-  def get_fb_data
+  def self.get_fb_data(access_token)
     conn = Faraday.new(:url => 'https://graph.facebook.com')
-    res = conn.get '/v2.3/me', { :access_token => self.fb_token }
+    res = conn.get '/v2.3/me', { :access_token => access_token }
 
-    JSON.parse( res.body )
+    if res.status == 200
+      JSON.parse( res.body )
+    else
+      Rails.logger.warn(res.body)
+      nil
+    end
   end
 
   def self.from_omniauth(auth)
     # Case 1: Find existing user by facebook uid
     user = User.find_by_fb_uid( auth.uid )
-    user.fb_raw_data = auth
-    user.save!
-
-    return user if user
+    if user
+      user.fb_raw_data = auth
+      user.save!
+      return user
+    end
 
     # Case 2: Find existing user by email
     existing_user = User.find_by_email( auth.info.email )

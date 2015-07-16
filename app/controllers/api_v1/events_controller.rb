@@ -5,7 +5,7 @@ class ApiV1::EventsController < ApiController
   end
 
   def create
-    @event = Event.new( :name => params[:name] )
+    @event = Event.new( :name => params[:name], :logo => params[:logo] )
 
     if @event.save
       render :json => { :message => "OK", :id => @event.id }
