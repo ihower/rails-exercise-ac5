@@ -240,7 +240,7 @@ Devise.setup do |config|
   # up on your models and hooks.
 
   fb_config = Rails.application.config_for(:facebook) # config/facebook.yml
-  config.omniauth :facebook, fb_config["app_id"], fb_config["app_secret"]
+  config.omniauth :facebook, fb_config["app_id"], fb_config["app_secret"], :scope => "email,public_profile,user_friends"
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
