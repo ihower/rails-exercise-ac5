@@ -22,6 +22,7 @@ Total: <%= current_cart.amount %>
 
     <%= button_to "Buy", buy_product_path(p), :class => "btn btn-primary btn-xs" %>
 
+    剩餘: <%= p.qty_in_stock %>
   </div>
 
 <% end %>

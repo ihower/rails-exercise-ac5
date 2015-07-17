@@ -7,6 +7,7 @@ namespace :dev do
       Product.create!( :title => Faker::App.name,
                        :price => ( rand(100)+1 ) * 100 ,
                        :image_url => Faker::Avatar.image,
+                       :qty_in_stock => rand(10),
                        :description => Faker::Lorem.paragraph )
     end
   end

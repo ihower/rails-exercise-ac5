@@ -140,8 +140,9 @@ ActiveRecord::Schema.define(version: 20150717022900) do
     t.integer  "price"
     t.text     "description"
     t.string   "image_url"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "qty_in_stock", default: 0
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "taggings", force: :cascade do |t|
