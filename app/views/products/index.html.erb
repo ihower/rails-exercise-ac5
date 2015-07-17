@@ -1,0 +1,12 @@
+
+<% @products.each do |p| %>
+
+  <div class="item">
+    <%= image_tag(p.image_url, :width => 60) %><br>
+    <%= link_to p.title, product_path(p) %>
+    $<%= number_with_delimiter( p.price ) %>
+  </div>
+
+<% end %>
+
+<div class="clearfix"></div>

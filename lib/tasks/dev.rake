@@ -1,5 +1,16 @@
 namespace :dev do
 
+  task :fake_product => :environment do
+    Product.delete_all
+
+    100.times do
+      Product.create!( :title => Faker::App.name,
+                       :price => ( rand(100)+1 ) * 100 ,
+                       :image_url => Faker::Avatar.image,
+                       :description => Faker::Lorem.paragraph )
+    end
+  end
+
   task :fix_user_auth_token => :environment do
     User.find_each do |u|
       puts "Update #{u.id} token"
