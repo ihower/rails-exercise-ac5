@@ -17,7 +17,7 @@ class OrdersController < ApplicationController
     @order.add_line_items(current_cart)
 
     if @order.save
-      session[:cart_id] = nil
+      cookies[:cart_id] = nil
       redirect_to products_path
     else
       render :new

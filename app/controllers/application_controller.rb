@@ -17,12 +17,12 @@ class ApplicationController < ActionController::Base
   end
 
   def set_cart
-    if session[:cart_id]
-      @cart = Cart.find_by_id( session[:cart_id] )
+    if cookies[:cart_id]
+      @cart = Cart.find_by_id( cookies.signed[:cart_id] )
     end
 
     @cart ||= Cart.create!
-    session[:cart_id] = @cart.id
+    cookies.permanent.signed[:cart_id] = @cart.id
 
     return @cart
   end
