@@ -110,7 +110,7 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
-   match ':controller(/:action(/:id(.:format)))', :via => :all
+  # match ':controller(/:action(/:id(.:format)))', :via => :all
 
 
 end
