@@ -4,12 +4,28 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :configure_permitted_parameters, if: :devise_controller?
-
   before_action :log_current_user
-
   before_action :set_locale
-
   before_action :set_timezone
+
+  helper_method :current_cart
+
+  protected
+
+  def current_cart
+    @cart || set_cart
+  end
+
+  def set_cart
+    if session[:cart_id]
+      @cart = Cart.find_by_id( session[:cart_id] )
+    end
+
+    @cart ||= Cart.create!
+    session[:cart_id] = @cart.id
+
+    return @cart
+  end
 
   # Pro Tip:
   # true || "不會執行"
@@ -28,8 +44,6 @@ class ApplicationController < ActionController::Base
 
     I18n.locale = session[:locale] || I18n.default_locale
   end
-
-  protected
 
   def log_current_user
     if current_user

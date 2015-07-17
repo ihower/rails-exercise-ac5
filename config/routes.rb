@@ -3,14 +3,17 @@ Rails.application.routes.draw do
   resources :courses
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
-  resources :products
+  resources :products do
+    member do
+      post :buy
+    end
+  end
 
   resources :todos
   resources :ubikes
 
   get "/spa" => "welcome#spa"
   get "/about" => "welcome#about"
-
 
   #namespace "api/v1" do
   scope :path => '/api/v1/', :module => "api_v1", :defaults => { :format => :json }, :as => 'v1' do

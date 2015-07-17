@@ -1,3 +1,13 @@
+<h2>Your cart</h2>
+<ul>
+<% current_cart.line_items.each do |i| %>
+  <li><%= i.product.title %> $<%= i.product.price %> x <%= i.qty %> = <%= i.amount %> </li>
+<% end %>
+</ul>
+
+Total: <%= current_cart.amount %>
+
+<h2>Product list</h2>
 
 <% @products.each do |p| %>
 
@@ -5,6 +15,9 @@
     <%= image_tag(p.image_url, :width => 60) %><br>
     <%= link_to p.title, product_path(p) %>
     $<%= number_with_delimiter( p.price ) %>
+
+    <%= button_to "Buy", buy_product_path(p), :class => "btn btn-primary btn-xs" %>
+
   </div>
 
 <% end %>
