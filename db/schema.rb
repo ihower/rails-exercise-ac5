@@ -120,9 +120,12 @@ ActiveRecord::Schema.define(version: 20150717022900) do
     t.string   "address"
     t.string   "payment_method"
     t.integer  "amount"
+    t.integer  "user_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
+
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id"
 
   create_table "people", force: :cascade do |t|
     t.string   "name"

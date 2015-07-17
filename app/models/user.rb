@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
          :omniauthable, :omniauth_providers => [:facebook]
 
   has_many :events
+  has_many :orders
 
   before_create :generate_authentication_token
 

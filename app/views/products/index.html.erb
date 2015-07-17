@@ -1,3 +1,5 @@
+<%= link_to "過往訂單", orders_path %>
+
 <h2>Your cart</h2>
 <ul>
 <% current_cart.line_items.each do |i| %>
@@ -6,6 +8,8 @@
 </ul>
 
 Total: <%= current_cart.amount %>
+
+<%= link_to "Checkout", new_order_path, :class => "btn btn-danger" %>
 
 <h2>Product list</h2>
 

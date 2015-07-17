@@ -1,0 +1,24 @@
+<%= link_to "Product list", products_path %>
+
+<h2>Past Order</h2>
+
+<table class="table">
+<% @orders.each do |o| %>
+  <tr>
+    <td><%= o.id %></td>
+    <td>
+      <%= o.name %>
+      <%= o.email %>
+      <%= o.phone %>
+      <%= o.address %>
+    </td>
+    <td>
+      <% o.line_items.each do |i| %>
+        <%= i.product.title %> x <%= i.qty %> = <%= i.amount %><br>
+      <% end %>
+    </td>
+    <td><%= o.amount %></td>
+    <td><%= o.created_at.to_s(:short) %></td>
+  </tr>
+<% end %>
+</table>
