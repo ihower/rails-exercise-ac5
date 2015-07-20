@@ -63,6 +63,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem "mysql2"
 
+gem 'capistrano-rails', :group => :development
+gem 'capistrano-passenger', :group => :development
+
 group :development, :test do
 
   gem "rspec-rails"
