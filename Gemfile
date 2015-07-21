@@ -5,6 +5,10 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.1'
 gem "rails-i18n"
 
+
+gem "sidekiq"
+gem 'sinatra', '>= 1.3.0', :require => nil
+
 gem 'ejs'
 
 gem "letter_opener", :group => :development
