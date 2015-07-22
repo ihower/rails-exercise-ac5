@@ -6,6 +6,10 @@ class Order < ActiveRecord::Base
   validate :check_product_qty
   after_create :update_product_qty
 
+  def paid?
+    self.payment_status == "paid"
+  end
+
   def add_line_items(cart)
     cart.line_items.each do |cart_item|
       self.line_items.build( :product => cart_item.product,

@@ -1,0 +1,7 @@
+<form action="<%= Allpay.url %>" method="post">
+  <% generate_allpay_params(@payment).each do |key, value| %>
+    <%= hidden_field_tag key, value %>
+  <% end %>
+<input type="submit">
+</form>
+<script>document.forms[0].submit()</script>

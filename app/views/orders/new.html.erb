@@ -27,6 +27,10 @@
   </p>
 
   <p>
+    <%= f.label :payment_method %>
+    <%= f.select :payment_method, ["allpay", "paypal"] %>
+  </p>
+  <p>
     <%= f.submit %>
   </p>
 <% end %>

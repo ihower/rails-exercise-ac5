@@ -8,7 +8,15 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => '/sidekiq'
   end
 
-  resources :orders
+  post 'allpay/result'
+  post 'allpay/return'
+
+  resources :orders do
+
+    get :checkout_allpay, :on => :member
+
+  end
+
   resources :products do
     member do
       post :buy
