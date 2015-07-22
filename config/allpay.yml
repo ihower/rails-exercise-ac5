@@ -1,0 +1,21 @@
+# 登入廠商後台帳號/密碼: StageTest/test1234
+# 廠商後台測試環境: http://vendor-stage.allpay.com.tw
+# 信用卡測試卡號: 4311-9522-2222-2222
+# 信用卡測試安全碼: 222
+# 信用卡測試有效年月: 請設定大於測試時間
+
+default: &default
+  merchant_id: '2000132'
+  hash_key: '5294y06JbISpM5x9'
+  hash_iv: 'v77hoKGq4kWxNNIS'
+  url: http://payment-stage.allpay.com.tw/Cashier/AioCheckOut
+  return_url: 'http://requestb.in/1688nlh1'
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default
