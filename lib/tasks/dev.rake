@@ -1,5 +1,21 @@
 namespace :dev do
 
+  task :ben => :environment do
+
+    require 'benchmark'
+
+    n = 100
+    Benchmark.bm do |x|
+      x.report {
+        n.times { Event.first }
+      }
+      x.report {
+        n.times { Event.select(:id).first }
+      }
+    end
+
+  end
+
   task :fake_product => :environment do
     Product.delete_all
 
