@@ -5,6 +5,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.1'
 gem "rails-i18n"
 
+gem "dalli"
 
 gem "sidekiq"
 gem 'sinatra', '>= 1.3.0', :require => nil

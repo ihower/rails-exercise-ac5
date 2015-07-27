@@ -13,18 +13,22 @@ Total: <%= current_cart.amount %>
 
 <h2>Product list</h2>
 
+<% cache [@products] do %>
 <% @products.each do |p| %>
 
-  <div class="item">
-    <%= image_tag(p.image_url, :width => 60) %><br>
-    <%= link_to p.title, product_path(p) %>
-    $<%= number_with_delimiter( p.price ) %>
+  <% cache p do %>
+    <div class="item foobar">
+      <%= image_tag(p.image_url, :width => 60) %><br>
+      <%= link_to p.title, product_path(p) %>
+      $<%= number_with_delimiter( p.price ) %>
 
-    <%= button_to "Buy", buy_product_path(p), :class => "btn btn-primary btn-xs" %>
+      <%= button_to "Buy", buy_product_path(p), :class => "btn btn-primary btn-xs" %>
 
-    剩餘: <%= p.qty_in_stock %>
-  </div>
+      剩餘: <%= p.qty_in_stock %>
+    </div>
+  <% end %>
 
+<% end %>
 <% end %>
 
 <div class="clearfix"></div>
