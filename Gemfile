@@ -30,6 +30,7 @@ gem 'bootstrap-sass', '~> 3.3.4'
 gem 'kaminari'
 
 gem "paperclip"
+gem 'aws-sdk', '~> 1.6'
 
 gem 'ranked-model'
 

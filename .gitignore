@@ -20,3 +20,5 @@
 /config/email.yml
 /public/system
 
+/config/s3.yml
+
