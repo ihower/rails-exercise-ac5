@@ -1,5 +1,7 @@
 class TodosController < ApplicationController
 
+  skip_before_filter :verify_authenticity_token
+
   def index
     @todos = Todo.all.order("id DESC")
 
@@ -7,7 +9,9 @@ class TodosController < ApplicationController
       format.html {
         gon.data = { :todos => @todos }
       }
-      format.json
+      format.json {
+        render :json => { :todos => @todos }
+      }
     end
   end
 

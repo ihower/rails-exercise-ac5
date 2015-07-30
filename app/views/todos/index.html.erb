@@ -1,8 +1,7 @@
-
 <script>
 
 $("#main").html( JST["templates/todos"]( gon.data ) )
-//$("#main").html( JST["templates/todos"]( { todos: gon.data.todos } ) )
+
 
 $("#todo-list").on("click", ".remove", function(e){
   e.preventDefault();
@@ -11,7 +10,7 @@ $("#todo-list").on("click", ".remove", function(e){
   var todo_id = li.data("todo-id");
 
   $.ajax({
-    url: "/todos/" + todo_id,
+    url: "http://localhost:3000/todos/" + todo_id,
     method: "DELETE",
     dataType: "json",
     success: function(data) {
@@ -27,7 +26,7 @@ $("#todo-form").on("submit", function(e){
   var input = $("#new-todo-input");
 
   $.ajax({
-    url: "/todos",
+    url: "http://localhost:3000/todos",
     method: "POST",
     dataType: "json",
     data: {
@@ -62,7 +61,7 @@ $("#todo-list").on("click", ".edit-todo-btn", function(e){
   var todo_id = li.data("todo-id");
 
   $.ajax({
-    url: "/todos/" + todo_id,
+    url: "http://localhost:3000/todos/" + todo_id,
     method: "PATCH",
     dataType: "json",
     data: {
