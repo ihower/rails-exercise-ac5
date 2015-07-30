@@ -1,9 +1,13 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
 gem "rails-i18n"
+
+#gem "foobarac5", :git => "git@github.com:ihower/foobarac5.git"
+#gem "foobarac5", :github => "ihower/foobarac5"
+
+gem "foobarac5"
 
 gem "dalli"
 
