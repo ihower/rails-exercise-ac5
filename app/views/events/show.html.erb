@@ -82,7 +82,20 @@ $("#check_open").click(function(){
 
 });
 
-
+  $(window).scroll(function(){
+    if ( $(window).scrollTop() > $(document).height() - $(window).height() - 50 ) {
+      var url = $("#load-more").attr("href");
+      if (url) {
+        $.ajax({
+          type: "GET",
+          url: url,
+          dataType: "script"
+        })
+      } else {
+        console.log("data ended")
+      }
+    }
+  })
 
 </script>
 
