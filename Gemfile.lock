@@ -170,6 +170,7 @@ GEM
       cocaine (~> 0.5.3)
       mime-types
     rack (1.6.1)
+    rack-cors (0.4.0)
     rack-protection (1.5.3)
       rack
     rack-test (0.6.3)
@@ -309,6 +310,7 @@ DEPENDENCIES
   nested_form_fields
   omniauth-facebook
   paperclip
+  rack-cors
   rails (= 4.2.1)
   rails-i18n
   ranked-model

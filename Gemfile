@@ -4,6 +4,8 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.1'
 gem "rails-i18n"
 
+gem 'rack-cors', :require => 'rack/cors'
+
 #gem "foobarac5", :git => "git@github.com:ihower/foobarac5.git"
 #gem "foobarac5", :github => "ihower/foobarac5"
 
